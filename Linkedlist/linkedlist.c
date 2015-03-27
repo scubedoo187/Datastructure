@@ -6,6 +6,10 @@ typedef struct Node {
     struct Node *link;
 } Node;
 
+Node *headNode;
+Node *tailNode;
+
+void init();
 int searchNode(Node *p, char);
 void insertNode(Node *p, char);
 void removeNode(Node *p, char);
@@ -15,9 +19,18 @@ int main() {
     Node *p;
 
     insertNode(p, 'a');
+    insertNode(p, 'b');
+    insertNode(p, 'c');
     printNode(p);
 
     return 0;
+}
+
+void init() {
+    headNode = (Node*)malloc(sizeof(Node));
+    tailNode = (Node*)malloc(sizeof(Node));
+    headNode->link = tailNode;
+    tailNode->link = tailNode;
 }
 
 int searchNode(Node *p, char data) {
